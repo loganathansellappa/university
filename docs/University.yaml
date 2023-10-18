@@ -1,0 +1,61 @@
+openapi: "3.0.3"
+info:
+  title: "university API"
+  description: "university API"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080"
+paths:
+  /api/v1/colleges/{id}:
+    get:
+      summary: "GET api/v1/colleges/{id}"
+      operationId: "getCollege"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+  /api/v1/colleges:
+    post:
+      summary: "POST api/v1/colleges"
+      operationId: "createCollege"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollegeDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+components:
+  schemas:
+    HttpHeaders:
+      type: "object"
+      properties: { }
+    ResponseEntity:
+      type: "object"
+      properties:
+        headers:
+          $ref: "#/components/schemas/HttpHeaders"
+    CollegeDto:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int32"
+        name:
+          type: "string"

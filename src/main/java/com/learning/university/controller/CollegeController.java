@@ -1,5 +1,6 @@
 package com.learning.university.controller;
 
+import com.learning.university.common.exceptions.ResourceNotFoundException;
 import com.learning.university.database.dto.CollegeDto;
 import com.learning.university.service.CollegeService;
 import lombok.AllArgsConstructor;
@@ -9,20 +10,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@AllArgsConstructor
-@RequestMapping("/colleges")
+@RequiredArgsConstructor
+@RequestMapping("api/v1/colleges")
 public class CollegeController {
-    private CollegeService collegeService;
+    private final CollegeService collegeService;
 
     @GetMapping("{id}")
-    public ResponseEntity<CollegeDto> getCollege(@PathVariable Integer id) {
+    public ResponseEntity<?> getCollege(@PathVariable Integer id) {
         CollegeDto college = collegeService.findById(id);
+        if (college == null) {
+            throw new ResourceNotFoundException("college not found");
+        }
         return new ResponseEntity<>(college, HttpStatus.OK);
     }
-
-    // create api to create a new college which uses the college service to create a new college
-    // and returns the created college with status code 201 on success and 400 for failure
-    // remove ID from the request body
 
     @PostMapping
     public ResponseEntity<CollegeDto> createCollege(@RequestBody CollegeDto collegeDto) {
