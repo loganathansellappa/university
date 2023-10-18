@@ -15,12 +15,6 @@ public class CollegeService {
 
     private final CollegeMapper collegeMapper;
     private final CollegeRepository collegeRepository;
-    @Autowired
-    public CollegeService(CollegeRepository collegeRepository, CollegeMapper collegeMapper) {
-        this.collegeRepository = collegeRepository;
-        this.collegeMapper = collegeMapper;
-    }
-
     public CollegeDto findById(Integer id) {
         College college = collegeRepository.findById(id).orElse(null);
         if (college != null) {
