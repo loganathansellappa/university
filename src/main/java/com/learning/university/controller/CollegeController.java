@@ -3,7 +3,6 @@ package com.learning.university.controller;
 import com.learning.university.common.exceptions.ResourceNotFoundException;
 import com.learning.university.database.dto.CollegeDto;
 import com.learning.university.service.CollegeService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
