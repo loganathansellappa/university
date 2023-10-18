@@ -1,7 +1,7 @@
 # University
 
 ## Description
-This is a repository for my university projects.
+SpringBoot App with CRUD 
 
 ## RUNNING APPLICATION USING DOCKER
 1. Install docker
